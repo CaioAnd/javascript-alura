@@ -6,7 +6,7 @@ botaoAdicionar.addEventListener("click",function(){
 
     var paciente = obtemPacienteDoFormulario(form);
 
-    var pacienteTr = montaTr(paciente);
+    
 
     var erro = validaPaciente(paciente);
 
@@ -15,10 +15,7 @@ botaoAdicionar.addEventListener("click",function(){
         return;
     }
 
-    // Adicionando o paciente na tabela
-    var tabela = document.querySelector("#tabela-pacientes");
-
-    tabela.appendChild(pacienteTr);
+    adicionaPacienteNaTabela(paciente);
 
     form.reset();
     var mensagensErro = document.querySelector("#mensagens-erro");
@@ -82,6 +79,12 @@ function validaPaciente(paciente) {
     if (!validaAltura(paciente.altura)) erros.push("Altura é inválido!");
 
     return erros;
+}
+
+function adicionaPacienteNaTabela(paciente) {
+    var pacienteTr = montaTr(paciente);
+    var tabela = document.querySelector("#tabela-pacientes");
+    tabela.appendChild(pacienteTr);
 }
 
 function exibeMensagensDeErro(erros) {
